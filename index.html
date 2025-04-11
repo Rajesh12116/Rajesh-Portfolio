@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venkata Rajesh Paidipala - Network Engineer</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/300') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 1rem;
+            object-fit: cover;
+            background-color: #fff;
+        }
+        
+        .name {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .contact-info a:hover {
+            color: var(--light-color);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .cta-btn {
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .cta-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-btn.secondary {
+            background-color: transparent;
+            border: 2px solid #fff;
+        }
+        
+        .cta-btn.secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Nav Styles */
+        nav {
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-links li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-subtitle {
+            color: #777;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-tag {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .skill-tag:hover {
+            background-color: var(--secondary-color);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-category {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-category h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-list li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-list li::before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--light-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -10px;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 1.5rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .timeline-content:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+            color: var(--primary-color);
+        }
+        
+        .timeline-company {
+            color: #777;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-description {
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .timeline-skills span {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--secondary-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-tech span {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--accent-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+        
+        .project-description {
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .project-link:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Education & Certifications */
+        .qualifications {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .education-list,
+        .certification-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .education-item,
+        .certification-item {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .education-item:hover,
+        .certification-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .education-degree,
+        .certification-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .education-school,
+        .certification-authority {
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+        
+        .education-date,
+        .certification-date {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+        
+        .in-progress {
+            display: inline-block;
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--accent-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+        
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(52, 152, 219, 0.1);
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-details p,
+        .contact-details a {
+            color: #777;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-details a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .contact-form {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-about h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-nav {
+            list-style: none;
+        }
+        
+        .footer-nav li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-nav li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-nav li a:hover {
+            color: #fff;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-grid,
+            .qualifications {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .name {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .skill-category {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-content">
+            <img src="/api/placeholder/300/300" alt="Profile Image" class="profile-img">
+            <h1 class="name">Venkata Rajesh Paidipala</h1>
+            <p class="title">Network Engineer & Security Specialist</p>
+            <div class="contact-info">
+                <a href="mailto:pvr12116@gmail.com">
+                    📧 pvr12116@gmail.com
+                </a>
+                <a href="tel:5133943009">
+                    📱 (513) 394-3009
+                </a>
+                <a href="#">
+                    📍 Cincinnati, OH (Willing to Relocate)
+                </a>
+            </div>
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-btn">
+                    Contact Me
+                </a>
+                <a href="#" class="cta-btn secondary">
+                    Download Resume
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-container">
+            <a href="#" class="logo">VRP</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Experienced network engineer with a passion for securing and optimizing network infrastructure</p>
+            </div>
+            <div class="about-content">
+                <div class="about-img-wrapper">
+                    <img src="images/profile-img.jpeg" alt="About Me" class="about-img">
+                </div>
+                <div class="about-text">
+                    <h3>Network Engineer & Security Specialist</h3>
+                    <p>I am an experienced Network Engineer with a strong background in routing, switching, and security. My expertise spans across various networking technologies including BGP, OSPF, MPLS, VLANs, and security implementations such as firewalls (Cisco ASA, Palo Alto) and VPN solutions.</p>
+                    <p>With hands-on experience in both network design and security implementation, I excel at creating robust, scalable, and secure network infrastructures. My skills extend to cloud networking on AWS and Azure, as well as network automation using Python, Ansible, and Terraform.</p>
+                    <p>I am currently completing my Master's in Information Technology at the University of Cincinnati with a focus on network security and cloud technologies.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Network Security</span>
+                        <span class="skill-tag">Routing & Switching</span>
+                        <span class="skill-tag">Cloud Networking</span>
+                        <span class="skill-tag">Network Automation</span>
+                        <span class="skill-tag">DevOps</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            window.addEventListener('load', matchImageHeight);
+            window.addEventListener('resize', matchImageHeight);
+
+            function matchImageHeight() {
+                const textBox = document.querySelector('.about-text');
+                const image = document.querySelector('.about-img');
+                image.style.height = textBox.offsetHeight + 'px'; // Match height with text box
+            }
+
+          </script>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="background-color: #f9f9f9;">
+        <div class="container">
+            <div class="section-heading">
+                <h2 class="section-title">Technical Skills</h2>
+                <p class="section-subtitle">A comprehensive overview of my technical expertise and capabilities</p>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>🌐 Networking</h3>
+                    <ul class="skill-list">
+                        <li>OSPF, BGP, RIP, EIGRP, RSVP-TE</li>
+                        <li>MP-BGP, L3VPN, VRF, VLAN, QoS</li>
+                        <li>IP/MPLS, Segment Routing</li>
+                        <li>OT security protocols (PLCs, SCADA)</li>
+                        <li>Industrial Ethernet (Layer 2/3)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>☁️ Cloud & Virtualization</h3>
+                    <ul class="skill-list">
+                        <li>AWS (VPC, EC2, S3, Route53, IAM)</li>
+                        <li>Azure Networking</li>
+                        <li>GCP Networking</li>
+                        <li>Hyper-V</li>
+                        <li>VMware</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>🔒 Security</h3>
+                    <ul class="skill-list">
+                        <li>Firewalls (Cisco ASA, Palo Alto, FortiGate)</li>
+                        <li>IDS/IPS, SIEM</li>
+                        <li>AAA (TACACS+, RADIUS)</li>
+                        <li>Zero Trust Architecture</li>
+                        <li>Vulnerability Assessment</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>🛠️ Automation & DevOps</h3>
+                    <ul class="skill-list">
+                        <li>Python, Ansible, Terraform</li>
+                        <li>Docker, Kubernetes</li>
+                        <li>CI/CD (Jenkins, GitHub Actions)</li>
+                        <li>Bash, PowerShell</li>
+                        <li>YAML, JSON</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>📊 Tools & Protocols</h3>
+                    <ul class="skill-list">
+                        <li>NMS, EMS, Wireshark</li>
+                        <li>PRTG, SolarWinds</li>
+                        <li>NetFlow, Syslog, TCP/IP</li>
+                        <li>SNMP, DHCP, DNS</li>
+                        <li>Nmap, Metasploit</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>📡 Optical Networking</h3>
+                    <ul class="skill-list">
+                        <li>DWDM, WDM, OTN</li>
+                        <li>FEC, OSA, OFA</li>
+                        <li>ROADM (3D, 9D)</li>
+                        <li>Muxponder, Transponder</li>
+                        <li>Optical Network Testing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <!-- Experience Section -->
+<section id="experience">
+    <div class="container">
+        <div class="section-heading">
+            <h2 class="section-title">Work Experience</h2>
+            <p class="section-subtitle">My professional journey in the field of networking and security</p>
+        </div>
+        <div class="timeline">
+            <!-- Tejas Networks -->
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">Sep 2022 – Dec 2023</div>
+                    <h3 class="timeline-title">Research and Development PE Engineer</h3>
+                    <p><strong>Company:</strong> Tejas Networks</p>
+                    <p><strong>Environment & Skills:</strong> MPLS, OSPF, BGP, EIGRP, RSVP-TE, L2VPN, VPLS, SD-WAN, LAN, WAN, DWDM, NMS, EMS, Python, Linux, Bash</p>
+                    
+                    <ul>
+                        <li>Tested OSPF, BGP, EIGRP, RSVP-TE, MPLS, and IP MPLS protocols in Layer 3 environments.</li>
+                        <li>Conducted DWDM testing on TJ1600 series for Power Grid in a 500 km setup.</li>
+                        <li>Validated L2VPN and VPLS using automation tools and conducted manual protocol verification.</li>
+                        <li>Worked on EMS and NMS interfaces for router and switch configuration.</li>
+                        <li>Created and maintained detailed test plans, logs, and documentation.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Capgemini -->
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">Nov 2021 – Aug 2022</div>
+                    <h3 class="timeline-title">Network Analyst</h3>
+                    <p><strong>Company:</strong> Capgemini</p>
+                    <p><strong>Environment & Skills:</strong> IP Networking, Network Protocols, MPLS, QoS, Network Troubleshooting, Wireshark, PRTG, SolarWinds, Data Analysis, Python</p>
+                    <ul>
+                        <li>Optimized network performance by configuring L2 switches, OSPF, BGP, and VLANs while ensuring security compliance.</li>
+                        <li>Troubleshot connectivity issues in coordination with IT, engineering, and vendors for rapid resolution.</li>
+                        
+                        <li>Implemented QoS to prioritize critical traffic and ensure efficient network performance.</li>
+                        
+                        
+                        <li>Configured firewalls and IDS/IPS systems to improve network security posture.</li>
+                        <li>Developed automation scripts in PowerShell and Python for monitoring and reporting.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Projects Section -->
+<section id="projects">
+    <div class="container">
+        <div class="section-heading">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-subtitle">Hands-on experience building and deploying secure, scalable, and automated network solutions</p>
+        </div>
+
+        <!-- Project 1 -->
+        <div class="project-item" style="margin-bottom: 40px;">
+            <h3 class="project-title">Zero Trust Architecture in AWS Cloud</h3>
+            <p><strong>Technologies:</strong> AWS IAM, VPC, WAF, SSO, Security Groups, CloudTrail, GuardDuty</p>
+            <ul>
+                <li>Designed and implemented a Zero Trust Architecture model in AWS environment with strict access controls and IAM policies.</li>
+                <li>Used WAF, Security Groups, and private subnets for micro-segmentation and protection of services.</li>
+                <li>Enabled AWS GuardDuty and CloudTrail for continuous threat detection and audit logging.</li>
+                <li>Implemented "least privilege" principles with role-based access and SSO for identity verification.</li>
+                <li>Aligned with Zero Trust principles of “never trust, always verify” to secure workloads and data across AWS services.</li>
+            </ul>
+        </div>
+
+        
+        <!-- Project 2 -->
+        <div class="project-item" style="margin-bottom: 40px;">
+            <h3 class="project-title">Comprehensive Network Optimization and Secure SD-WAN Deployment </h3>
+            <p><strong>Technologies:</strong> OSPF, BGP, VLANs, Cisco IOS, ACLs, MPLS, SD-WAN, VPN, QoS, Network Security, Wireshark, Network Monitoring Tools</p>
+            <ul>
+                <li>Configured Layer 2/3 switches to enhance performance and connectivity across corporate environments.</li>
+                <li>Deployed dynamic routing protocols (OSPF, RIP, EIGRP, BGP) for redundancy and reliability.</li>
+                <li>Utilized VLANs to segment traffic and protect sensitive data.</li>
+                <li>Implemented firewalls, VPN encryption, ACLs, and IDS for security hardening.</li>
+                <li>Designed SD-WAN for secure and cost-effective multi-branch communication with improved application performance.</li>
+                <li>Enabled application-aware routing for prioritized VoIP and video traffic.</li>
+                <li>Conducted performance testing to ensure high availability and low latency.</li>
+            </ul>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-item" style="margin-bottom: 40px;">
+            <h3 class="project-title">Network Automation for Configuration and Monitoring</h3>
+            <p><strong>Technologies:</strong> Python, Ansible, Terraform, Jenkins, Git, Cisco IOS, AWS, Azure</p>
+            <ul>
+                <li>Developed Python and Ansible scripts to automate configuration of routers, switches, and firewalls.</li>
+                <li>Used Terraform for provisioning cloud-based network infrastructure with repeatability and speed.</li>
+                <li>Set up continuous monitoring for device status and configuration compliance.</li>
+                <li>Implemented automated backup and restore for device configurations ensuring fault tolerance.</li>
+                <li>Designed IAM policies to secure access to cloud-based network devices and tools.</li>
+            </ul>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-item">
+            <h3 class="project-title">Low-Cost Satellite Earth Station for NOAA-19 Weather Imaging</h3>
+            <p><strong>Technologies:</strong> RF Communication, SDR (Software Defined Radio), Dipole Antenna, Linux, Image Decoding Tools</p>
+            <ul>
+                <li>Designed and constructed a ground station using a copper rod dipole antenna to receive NOAA-19 satellite signals.</li>
+                <li>Tracked the NOAA-19 polar orbit satellite to capture real-time weather transmission data.</li>
+                <li>Converted satellite radio signals into visible weather imagery using open-source SDR software.</li>
+                <li>Published a technical paper on EasyChair (2021) highlighting the methodology and cost-efficiency of the system.</li>
+                <li>Demonstrated practical knowledge in antenna design, RF signal acquisition, and image processing.</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+<!-- Education Section -->
+<section id="education">
+    <div class="container">
+        <div class="section-heading">
+            <h2 class="section-title">Education</h2>
+            <p class="section-subtitle">Academic qualifications that laid the foundation of my technical career</p>
+        </div>
+
+        <!-- Master's Degree -->
+        <div class="education-card">
+            <div class="education-content">
+              <div class="education-text">
+                <h3 class="degree-title">Master of Science in Information Technology</h3>
+                <p><strong>University:</strong> University of Cincinnati, Cincinnati, Ohio, United States of America</p>
+                <p><strong>Duration:</strong> January 2024 – April 2025</p>
+                <p><strong>GPA:</strong> 3.93 / 4.0</p>
+                <ul>
+                  <li>Relevant coursework: Cloud Computing, DevOps, Cybersecurity, Advanced Networking, Applied Cryptography</li>
+                  <li>Completed projects on AWS networking, automation, Zero Trust security, and container orchestration</li>
+                </ul>
+              </div>
+              <div class="education-logo">
+                <img src="" alt="">
+              </div>
+            </div>
+          </div>
+          
+
+        
+</section>
+<!-- Contact Section -->
+<section id="contact">
+    <div class="container">
+        <div class="section-heading">
+            <h2 class="section-title">Contact</h2>
+            <p class="section-subtitle">Let's connect! Feel free to reach out for collaborations or opportunities</p>
+        </div>
+
+        <div class="contact-details">
+            <ul>
+                <li>
+                    <strong>Email:</strong>
+                    <a href="mailto:pvr12116@gmail.com">pvr12116@gmail.com</a>
+                </li>
+                <li>
+                    <strong>LinkedIn:</strong>
+                    <a href="https://www.linkedin.com/in/venkata-rajesh-paidipala/" target="_blank">
+                        linkedin.com/in/venkata-rajesh-paidipala
+                    </a>
+                </li>
+                <li>
+                    <strong>GitHub:</strong>
+                    <a href="https://github.com/Rajesh12116" target="_blank">github.com/Rajesh12116</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
