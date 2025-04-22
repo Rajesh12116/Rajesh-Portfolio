@@ -107,7 +107,11 @@ body {
     position: relative;
     padding: 8rem 0;
   }
-  
+  .download-btn:hover {
+    background-color: #c0392b;
+    color: white;
+}
+
   .display-table {
     width: 100%;
     height: 100%;
@@ -119,43 +123,43 @@ body {
     vertical-align: middle;
   }
   .intro-profile-img {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 5px solid rgba(255, 255, 255, 0.7);
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* If you want to position the text content below the image */
+.intro .intro-content {
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(30%);
+}
+
+/* For responsive design */
+@media (max-width: 768px) {
   .profile-img {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    border: 5px solid rgba(255, 255, 255, 0.7);
-    object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 130px;
+    height: 130px;
   }
   
-  /* If you want to position the text content below the image */
   .intro .intro-content {
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(30%);
+    transform: translateY(25%);
   }
-  
-  /* For responsive design */
-  @media (max-width: 768px) {
-    .profile-img {
-      width: 130px;
-      height: 130px;
-    }
-    
-    .intro .intro-content {
-      transform: translateY(25%);
-    }
-  }
+}
   /*--/ Sections /--*/
   .sect-4 {
     padding: 4rem 0;
