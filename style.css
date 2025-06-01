@@ -1,1164 +1,1289 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venkata Rajesh Paidipala - Network Engineer</title>
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f5f7fa;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: #fff;
-            padding: 2rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('/api/placeholder/1200/300') center/cover;
-            opacity: 0.1;
-            z-index: 0;
-        }
-        
-        .header-content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            margin-bottom: 1rem;
-            object-fit: cover;
-            background-color: #fff;
-        }
-        
-        .name {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-        
-        .title {
-            font-size: 1.25rem;
-            margin-bottom: 1rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .contact-info {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-        
-        .contact-info a {
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: var(--transition);
-        }
-        
-        .contact-info a:hover {
-            color: var(--light-color);
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .cta-btn {
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .cta-btn:hover {
-            background-color: #c0392b;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .cta-btn.secondary {
-            background-color: transparent;
-            border: 2px solid #fff;
-        }
-        
-        .cta-btn.secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Nav Styles */
-        nav {
-            background-color: #fff;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links li a {
-            text-decoration: none;
-            color: var(--dark-color);
-            font-weight: 600;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        .nav-links li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--secondary-color);
-            transition: var(--transition);
-        }
-        
-        .nav-links li a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .nav-links li a:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--primary-color);
-        }
-        
-        /* Section Styles */
-        section {
-            padding: 5rem 0;
-        }
-        
-        .section-heading {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .section-title {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 60%;
-            height: 3px;
-            background-color: var(--secondary-color);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .section-subtitle {
-            color: #777;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        
-        .about-img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-text h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-        
-        .about-text p {
-            margin-bottom: 1.5rem;
-            color: #555;
-        }
-        
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-        }
-        
-        .skill-tag {
-            background-color: rgba(52, 152, 219, 0.1);
-            color: var(--secondary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            transition: var(--transition);
-        }
-        
-        .skill-tag:hover {
-            background-color: var(--secondary-color);
-            color: #fff;
-            transform: translateY(-3px);
-        }
-        
-        /* Skills Section */
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .skill-category {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-        
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .skill-category h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .skill-list {
-            list-style: none;
-        }
-        
-        .skill-list li {
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .skill-list li::before {
-            content: "•";
-            color: var(--secondary-color);
-            font-weight: bold;
-        }
-        
-        /* Experience Section */
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: var(--light-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-        }
-        
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: #fff;
-            border: 4px solid var(--secondary-color);
-            border-radius: 50%;
-            top: 15px;
-            z-index: 1;
-        }
-        
-        .left {
-            left: 0;
-        }
-        
-        .right {
-            left: 50%;
-        }
-        
-        .left::after {
-            right: -10px;
-        }
-        
-        .right::after {
-            left: -10px;
-        }
-        
-        .timeline-content {
-            padding: 1.5rem;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-        
-        .timeline-content:hover {
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .timeline-date {
-            font-weight: 600;
-            color: var(--secondary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-title {
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
-            color: var(--primary-color);
-        }
-        
-        .timeline-company {
-            color: #777;
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-        
-        .timeline-description {
-            margin-bottom: 1rem;
-        }
-        
-        .timeline-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .timeline-skills span {
-            background-color: rgba(52, 152, 219, 0.1);
-            color: var(--secondary-color);
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            font-size: 0.8rem;
-        }
-        
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .project-card {
-            background-color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        
-        .project-content {
-            padding: 1.5rem;
-        }
-        
-        .project-title {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-        
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .project-tech span {
-            background-color: rgba(231, 76, 60, 0.1);
-            color: var(--accent-color);
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            font-size: 0.8rem;
-        }
-        
-        .project-description {
-            margin-bottom: 1.5rem;
-        }
-        
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .project-link {
-            color: var(--secondary-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-        
-        .project-link:hover {
-            color: var(--primary-color);
-        }
-        
-        /* Education & Certifications */
-        .qualifications {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-        
-        .education-list,
-        .certification-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .education-item,
-        .certification-item {
-            background-color: #fff;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-        
-        .education-item:hover,
-        .certification-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .education-degree,
-        .certification-name {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.25rem;
-        }
-        
-        .education-school,
-        .certification-authority {
-            color: #777;
-            margin-bottom: 0.5rem;
-        }
-        
-        .education-date,
-        .certification-date {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-        }
-        
-        .in-progress {
-            display: inline-block;
-            background-color: rgba(231, 76, 60, 0.1);
-            color: var(--accent-color);
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            font-size: 0.8rem;
-            margin-left: 0.5rem;
-        }
-        
-        /* Contact Section */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-        
-        .contact-info-container {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-        
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: rgba(52, 152, 219, 0.1);
-            color: var(--secondary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            font-size: 1.25rem;
-            flex-shrink: 0;
-        }
-        
-        .contact-details h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-            color: var(--primary-color);
-        }
-        
-        .contact-details p,
-        .contact-details a {
-            color: #777;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .contact-details a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .contact-form {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--dark-color);
-            font-weight: 600;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-            transition: var(--transition);
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background-color: var(--secondary-color);
-            color: #fff;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-            width: 100%;
-        }
-        
-        .submit-btn:hover {
-            background-color: #2980b9;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 3rem 0 1.5rem;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-about h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-about p {
-            margin-bottom: 1.5rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-link {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .social-link:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-        
-        .footer-links h3 {
-            font-size: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .footer-nav {
-            list-style: none;
-        }
-        
-        .footer-nav li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-nav li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        
-        .footer-nav li a:hover {
-            color: #fff;
-            padding-left: 5px;
-        }
-        
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 1.5rem;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .about-content,
-            .contact-grid,
-            .qualifications {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item::after {
-                left: 21px;
-            }
-            
-            .left::after, .right::after {
-                left: 21px;
-            }
-            
-            .right {
-                left: 0;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .name {
-                font-size: 2rem;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-            
-            .skill-category {
-                padding: 1.5rem;
-            }
-            
-            .section-title {
-                font-size: 1.75rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="header-content">
-            <img src="images/Ghibli-Img.jpg" alt="Venkata Rajesh Paidipala" class="profile-img">
-            <h1 class="name">Venkata Rajesh Paidipala</h1>
-            <p class="title">Network Engineer & Security Specialist</p>
-            <div class="contact-info">
-                <a href="mailto:pvr12116@gmail.com">
-                    📧 pvr12116@gmail.com
-                </a>
-                <a href="tel:5133943009">
-                    📱 (513) 394-3009
-                </a>
-                <a href="#">
-                    📍 Cincinnati, OH (Willing to Relocate)
-                </a>
-            </div>
-            <div class="cta-buttons">
-                <a href="#contact" class="cta-btn">
-                    Contact Me
-                </a>
-                <a href="Rajesh_Resume.pdf" download class="cta-btn download-btn" style="background-color: #e74c3c; color: white;">
-                    📄 Download Resume
-                </a>
-            </div>           
-        </div>
-    </header>
-    
-    <!-- Navigation -->
-    <nav>
-        <div class="container nav-container">
-            <a href="#" class="logo">VRP</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="mobile-menu-btn">☰</button>
-        </div>
-    </nav>
+/**
+* Template Name: DevFolio - v2.2.0
+* Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-heading">
-                <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Experienced network engineer with a passion for securing and optimizing network infrastructure</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img-wrapper">
-                    <img src="images/profile-img.jpeg" alt="About Me" class="about-img">
-                    
-                </div>
-                <div class="about-text">
-                    <h3>Network Engineer & Security Specialist</h3>
-                    <p>I am an experienced Network Engineer with a strong background in routing, switching, and security. My expertise spans across various networking technologies including BGP, OSPF, MPLS, VLANs, and security implementations such as firewalls (Cisco ASA, Palo Alto) and VPN solutions.</p>
-                    <p>With hands-on experience in both network design and security implementation, I excel at creating robust, scalable, and secure network infrastructures. My skills extend to cloud networking on AWS and Azure, as well as network automation using Python, Ansible, and Terraform.</p>
-                    <p>I am currently completing my Master's in Information Technology at the University of Cincinnati with a focus on network security and cloud technologies.</p>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Network Security</span>
-                        <span class="skill-tag">Routing & Switching</span>
-                        <span class="skill-tag">Cloud Networking</span>
-                        <span class="skill-tag">Network Automation</span>
-                        <span class="skill-tag">DevOps</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>
-            window.addEventListener('load', matchImageHeight);
-            window.addEventListener('resize', matchImageHeight);
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+  background-color: #f5f5f5;
+  color: #4e4e4e;
+}
 
-            function matchImageHeight() {
-                const textBox = document.querySelector('.about-text');
-                const image = document.querySelector('.about-img');
-                image.style.height = textBox.offsetHeight + 'px'; // Match height with text box
-            }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #1e1e1e;
+}
 
-          </script>
-    </section>
+a {
+  color: #1e1e1e;
+  transition: all 0.5s ease-in-out;
+}
 
-    <!-- Skills Section -->
-    <section id="skills" style="background-color: #f9f9f9;">
-        <div class="container">
-            <div class="section-heading">
-                <h2 class="section-title">Technical Skills</h2>
-                <p class="section-subtitle">A comprehensive overview of my technical expertise and capabilities</p>
-            </div>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>🌐 Networking</h3>
-                    <ul class="skill-list">
-                        <li>OSPF, BGP, RIP, EIGRP, RSVP-TE</li>
-                        <li>MP-BGP, L3VPN, VRF, VLAN, QoS</li>
-                        <li>IP/MPLS, Segment Routing</li>
-                        <li>OT security protocols (PLCs, SCADA)</li>
-                        <li>Industrial Ethernet (Layer 2/3)</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>☁️ Cloud & Virtualization</h3>
-                    <ul class="skill-list">
-                        <li>AWS (VPC, EC2, S3, Route53, IAM)</li>
-                        <li>Azure Networking</li>
-                        <li>GCP Networking</li>
-                        <li>Hyper-V</li>
-                        <li>VMware</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>🔒 Security</h3>
-                    <ul class="skill-list">
-                        <li>Firewalls (Cisco ASA, Palo Alto, FortiGate)</li>
-                        <li>IDS/IPS, SIEM</li>
-                        <li>AAA (TACACS+, RADIUS)</li>
-                        <li>Zero Trust Architecture</li>
-                        <li>Vulnerability Assessment</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>🛠️ Automation & DevOps</h3>
-                    <ul class="skill-list">
-                        <li>Python, Ansible, Terraform</li>
-                        <li>Docker, Kubernetes</li>
-                        <li>CI/CD (Jenkins, GitHub Actions)</li>
-                        <li>Bash, PowerShell</li>
-                        <li>YAML, JSON</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>📊 Tools & Protocols</h3>
-                    <ul class="skill-list">
-                        <li>NMS, EMS, Wireshark</li>
-                        <li>PRTG, SolarWinds</li>
-                        <li>NetFlow, Syslog, TCP/IP</li>
-                        <li>SNMP, DHCP, DNS</li>
-                        <li>Nmap, Metasploit</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>📡 Optical Networking</h3>
-                    <ul class="skill-list">
-                        <li>DWDM, WDM, OTN</li>
-                        <li>FEC, OSA, OFA</li>
-                        <li>ROADM (3D, 9D)</li>
-                        <li>Muxponder, Transponder</li>
-                        <li>Optical Network Testing</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+a:hover {
+  color: #5a0685;
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+}
 
-    <!-- Experience Section -->
-    <!-- Experience Section -->
-<section id="experience">
-    <div class="container">
-        <div class="section-heading">
-            <h2 class="section-title">Work Experience</h2>
-            <p class="section-subtitle">My professional journey in the field of networking and security</p>
-        </div>
-        <div class="timeline">
-            <!-- Tejas Networks -->
-            <div class="timeline-item left">
-                <div class="timeline-content">
-                    <div class="timeline-date">Sep 2021 – Dec 2023</div>
-                    <h3 class="timeline-title">Research and Development PE Engineer</h3>
-                    <p><strong>Company:</strong> Tejas Networks</p>
-                    <p><strong>Environment & Skills:</strong> MPLS, OSPF, BGP, EIGRP, RSVP-TE, L2VPN, VPLS, SD-WAN, LAN, WAN, DWDM, NMS, EMS, Python, Linux, Bash</p>
-                    
-                    <ul>
-                        <li>Tested OSPF, BGP, EIGRP, RSVP-TE, MPLS, and IP MPLS protocols in Layer 3 environments.</li>
-                        <li>Conducted DWDM testing on TJ1600 series for Power Grid in a 500 km setup.</li>
-                        <li>Validated L2VPN and VPLS using automation tools and conducted manual protocol verification.</li>
-                        <li>Worked on EMS and NMS interfaces for router and switch configuration.</li>
-                        <li>Created and maintained detailed test plans, logs, and documentation.</li>
-                    </ul>
-                </div>
-            </div>
+.p-r {
+  position: relative;
+}
 
-            <!-- Capgemini -->
-            <div class="timeline-item right">   
-                <div class="timeline-content">
-                    <div class="timeline-date">Apr 2020 – Sep 2021</div>
-                    <h3 class="timeline-title">Network Analyst</h3>
-                    <p><strong>Company:</strong> Capgemini</p>
-                    <p><strong>Environment & Skills:</strong> IP Networking, Network Protocols, MPLS, QoS, Network Troubleshooting, Wireshark, PRTG, SolarWinds, Data Analysis, Python</p>
-                    <ul>
-                        <li>Optimized network performance by configuring L2 switches, OSPF, BGP, and VLANs while ensuring security compliance.</li>
-                        <li>Troubleshot connectivity issues in coordination with IT, engineering, and vendors for rapid resolution.</li>
-                        
-                        <li>Implemented QoS to prioritize critical traffic and ensure efficient network performance.</li>
-                        
-                        
-                        <li>Configured firewalls and IDS/IPS systems to improve network security posture.</li>
-                        <li>Developed automation scripts in PowerShell and Python for monitoring and reporting.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Projects Section -->
-<section id="projects">
-    <div class="container">
-        <div class="section-heading">
-            <h2 class="section-title">Projects</h2>
-            <p class="section-subtitle">Hands-on experience building and deploying secure, scalable, and automated network solutions</p>
-        </div>
+.color-a {
+  color: #5a0685;
+}
 
-        <!-- Project 1 -->
-        <div class="project-item" style="margin-bottom: 40px;">
-            <h3 class="project-title">Zero Trust Architecture in AWS Cloud</h3>
-            <p><strong>Technologies:</strong> AWS IAM, VPC, WAF, SSO, Security Groups, CloudTrail, GuardDuty</p>
-            <ul>
-                <li>Designed and implemented a Zero Trust Architecture model in AWS environment with strict access controls and IAM policies.</li>
-                <li>Used WAF, Security Groups, and private subnets for micro-segmentation and protection of services.</li>
-                <li>Enabled AWS GuardDuty and CloudTrail for continuous threat detection and audit logging.</li>
-                <li>Implemented "least privilege" principles with role-based access and SSO for identity verification.</li>
-                <li>Aligned with Zero Trust principles of “never trust, always verify” to secure workloads and data across AWS services.</li>
-            </ul>
-        </div>
+.color-d {
+  color: #f5f5f5;
+}
 
-        
-        <!-- Project 2 -->
-        <div class="project-item" style="margin-bottom: 40px;">
-            <h3 class="project-title">Comprehensive Network Optimization and Secure SD-WAN Deployment </h3>
-            <p><strong>Technologies:</strong> OSPF, BGP, VLANs, Cisco IOS, ACLs, MPLS, SD-WAN, VPN, QoS, Network Security, Wireshark, Network Monitoring Tools</p>
-            <ul>
-                <li>Configured Layer 2/3 switches to enhance performance and connectivity across corporate environments.</li>
-                <li>Deployed dynamic routing protocols (OSPF, RIP, EIGRP, BGP) for redundancy and reliability.</li>
-                <li>Utilized VLANs to segment traffic and protect sensitive data.</li>
-                <li>Implemented firewalls, VPN encryption, ACLs, and IDS for security hardening.</li>
-                <li>Designed SD-WAN for secure and cost-effective multi-branch communication with improved application performance.</li>
-                <li>Enabled application-aware routing for prioritized VoIP and video traffic.</li>
-                <li>Conducted performance testing to ensure high availability and low latency.</li>
-            </ul>
-        </div>
+.color-text-a {
+  color: #4e4e4e;
+}
 
-        <!-- Project 3 -->
-        <div class="project-item" style="margin-bottom: 40px;">
-            <h3 class="project-title">Network Automation for Configuration and Monitoring</h3>
-            <p><strong>Technologies:</strong> Python, Ansible, Terraform, Jenkins, Git, Cisco IOS, AWS, Azure</p>
-            <ul>
-                <li>Developed Python and Ansible scripts to automate configuration of routers, switches, and firewalls.</li>
-                <li>Used Terraform for provisioning cloud-based network infrastructure with repeatability and speed.</li>
-                <li>Set up continuous monitoring for device status and configuration compliance.</li>
-                <li>Implemented automated backup and restore for device configurations ensuring fault tolerance.</li>
-                <li>Designed IAM policies to secure access to cloud-based network devices and tools.</li>
-            </ul>
-        </div>
+.box-shadow, .paralax-mf, .service-box, .work-box, .card-blog {
+  box-shadow: 0 13px 8px -10px rgba(0, 0, 0, 0.1);
+}
 
-        <!-- Project 4 -->
-        <div class="project-item">
-            <h3 class="project-title">Low-Cost Satellite Earth Station for NOAA-19 Weather Imaging</h3>
-            <p><strong>Technologies:</strong> RF Communication, SDR (Software Defined Radio), Dipole Antenna, Linux, Image Decoding Tools</p>
-            <ul>
-                <li>Designed and constructed a ground station using a copper rod dipole antenna to receive NOAA-19 satellite signals.</li>
-                <li>Tracked the NOAA-19 polar orbit satellite to capture real-time weather transmission data.</li>
-                <li>Converted satellite radio signals into visible weather imagery using open-source SDR software.</li>
-                <li>Published a technical paper on EasyChair (2021) highlighting the methodology and cost-efficiency of the system.</li>
-                <li>Demonstrated practical knowledge in antenna design, RF signal acquisition, and image processing.</li>
-            </ul>
-        </div>
+.box-shadow-a, .button:hover {
+  box-shadow: 0 0 0 4px #cde1f8;
+}
 
-    </div>
-</section>
-<!-- Education Section -->
-<section id="education" style="margin-top: -5rem;">
-    <div class="container">
-        <div class="section-heading">
-            <h2 class="section-title">Education</h2>
-            <p class="section-subtitle">Academic qualifications that laid the foundation of my technical career</p>
-        </div>
+.display-5 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+}
 
-        <!-- Master's Degree -->
-        <div class="education-card" style="margin-bottom: 0rem;">
-            <div class="education-content">
-              <div class="education-text">
-                <h3 class="degree-title">Master of Science in Information Technology</h3>
-                <p><strong>University:</strong> University of Cincinnati, Cincinnati, Ohio, United States of America</p>
-                <p><strong>Duration:</strong> January 2024 – April 2025</p>
-                <p><strong>GPA:</strong> 3.93 / 4.0</p>
-                <ul>
-                  <li>Relevant coursework: Cloud Computing, DevOps, Cybersecurity, Advanced Networking, Applied Cryptography</li>
-                  <li>Completed projects on AWS networking, automation, Zero Trust security, and container orchestration</li>
-                </ul>
-              </div>
-              <div class="education-logo">
-                <img src="" alt="">
-              </div>
-            </div>
-        </div>
+.display-6 {
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.1;
+}
 
-        <!-- Bachelor's Degree -->
-        <div class="education-card" style="margin-bottom: 1rem;">
-            <div class="education-content">
-              <div class="education-text">
-                <h3 class="degree-title">Bachelor of Technology in Electronics and Communication Engineering</h3>
-                <p><strong>University:</strong> KL University, Vijayawada, India</p>
-                <p><strong>Duration:</strong> July 2018 – April 2022</p>
-                <p><strong>GPA:</strong> 8.64 / 10.0</p>
-                <ul>
-                  <li>Relevant coursework: Data Structures and Algorithms, Database Management Systems, Computer Networks, Wireless Communications, Internet Of Things</li>
-                  <li>Major Project: Designed and Deployed Scalable, Highly Secure Enterprise Network Solutions Integrating Advanced VPN Architectures for Global Connectivity and Resilience</li>
-                </ul>
-              </div>
-              <div class="education-logo">
-                <img src="" alt="">
-              </div>
-            </div>
-        </div>
-    </div>
-</section>
+.avatar {
+  width: 32px;
+  height: 32px;
+  margin-right: 4px;
+  overflow: hidden;
+}
 
-<!-- Contact Section -->
-<section id="contact" style="margin-top: -10rem;">
-    <div class="container">
-        <div class="section-heading">
-            <h2 class="section-title">Contact</h2>
-            <p class="section-subtitle">Let's connect! Feel free to reach out for collaborations or opportunities</p>
-        </div>
-        <div class="contact-details" style="margin-top: 0rem;">
-            <ul>
-                <li>
-                    <strong>Email:</strong>
-                    <a href="mailto:pvr12116@gmail.com">pvr12116@gmail.com</a>
-                </li>
-                <li>
-                    <strong>LinkedIn:</strong>
-                    <a href="https://www.linkedin.com/in/venkata-rajesh-paidipala/" target="_blank">
-                        linkedin.com/in/venkata-rajesh-paidipala
-                    </a>
-                </li>
-                <li>
-                    <strong>GitHub:</strong>
-                    <a href="https://github.com/Rajesh12116" target="_blank">github.com/Rajesh12116</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</section>   
+.bg-image {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+
+@media (max-width: 1024px) {
+  .bg-image {
+    background-attachment: scroll;
+  }
+}
+
+.overlay-mf {
+  background-color: #5a0685;
+}
+
+.overlay-mf {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  opacity: .7;
+}
+
+.paralax-mf {
+  position: relative;
+  padding: 8rem 0;
+}
+
+.display-table {
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/*--/ Sections /--*/
+.sect-4 {
+  padding: 4rem 0;
+}
+
+.sect-pt4 {
+  padding-top: 4rem;
+}
+
+.sect-mt4 {
+  margin-top: 4rem;
+}
+
+/*--/ Title s /--*/
+.title-s {
+  font-weight: 600;
+  color: #1e1e1e;
+  font-size: 1.1rem;
+}
+
+/*--/ Title A /--*/
+.title-box {
+  margin-bottom: 4rem;
+}
+
+.title-a {
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.subtitle-a {
+  color: #4e4e4e;
+}
+
+.line-mf {
+  width: 40px;
+  height: 5px;
+  background-color: #5a0685;
+  margin: 0 auto;
+}
+
+/*--/ Title Left /--*/
+.title-box-2 {
+  margin-bottom: 3rem;
+}
+
+.title-left {
+  font-size: 2rem;
+  position: relative;
+}
+
+.title-left:before {
+  content: '';
+  position: absolute;
+  height: 3px;
+  background-color: #5a0685;
+  width: 100px;
+  bottom: -12px;
+}
+
+/*------/ Box /------*/
+.box-pl2 {
+  padding-left: 2rem;
+}
+
+.box-shadow-full {
+  padding: 3rem 1.25rem;
+  position: relative;
+  background-color: #fff;
+  margin-bottom: 3rem;
+  z-index: 2;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+  .box-shadow-full {
+    padding: 3rem;
+  }
+}
+
+/*------/ Socials /------*/
+.socials {
+  padding: 1.5rem 0;
+}
+
+.socials ul li {
+  display: inline-block;
+}
+
+.socials .ico-circle {
+  height: 40px;
+  width: 40px;
+  font-size: 1.7rem;
+  border-radius: 50%;
+  line-height: 1.4;
+  margin: 0 15px 0 0;
+  box-shadow: 0 0 0 3px #5a0685;
+  transition: all 500ms ease;
+}
+
+.socials .ico-circle:hover {
+  background-color: #5a0685;
+  color: #fff;
+  box-shadow: 0 0 0 3px #cde1f8;
+  transition: all 500ms ease;
+}
+
+/*------/ Ul resect /------*/
+.ul-resect, .socials ul, .list-ico, .blog-wrapper .post-meta ul, .box-comments .list-comments, .widget-sidebar .list-sidebar, .widget-tags ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.list-ico {
+  line-height: 2;
+}
+
+.list-ico span {
+  color: #5a0685;
+  margin-right: 10px;
+}
+
+/*------/ Ico Circle /------*/
+.ico-circle {
+  height: 100px;
+  width: 100px;
+  font-size: 2rem;
+  border-radius: 50%;
+  line-height: 1.55;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 0 0 10px #5a0685;
+  display: block;
+}
+
+/*------/ Owl Carousel /------*/
+.owl-theme .owl-dots {
+  text-align: center;
+  margin-top: 18px;
+}
+
+.owl-theme .owl-dots .owl-dot {
+  display: inline-block;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+  width: 18px;
+  height: 7px;
+  margin: 5px 5px;
+  background: #cde1f8;
+  border: 0px solid #cde1f8;
+  display: block;
+  transition: all 0.6s ease-in-out;
+  cursor: pointer;
+}
+
+.owl-theme .owl-dots .owl-dot:hover span {
+  background-color: #cde1f8;
+}
+
+.owl-theme .owl-dots .owl-dot.active span {
+  background-color: #1B1B1B;
+  width: 25px;
+}
+
+/*--/ Scrolltop s /--*/
+.scrolltop-mf {
+  position: relative;
+  display: none;
+}
+
+.scrolltop-mf span {
+  z-index: 999;
+  position: fixed;
+  width: 42px;
+  height: 42px;
+  background-color: #5a0685;
+  opacity: .7;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  text-align: center;
+  color: #fff;
+  top: auto;
+  left: auto;
+  right: 30px;
+  bottom: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/*------/ Back to top button /------*/
+.back-to-top {
+  position: fixed;
+  display: none;
+  background: #5a0685;
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  text-align: center;
+  line-height: 1;
+  font-size: 16px;
+  border-radius: 50%;
+  right: 15px;
+  bottom: 15px;
+  transition: background 0.5s;
+  z-index: 11;
+}
+
+.back-to-top i {
+  padding-top: 12px;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: 15px;
+  }
+}
+
+/*------/ Prelaoder /------*/
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: #fff;
+}
+
+#preloader:before {
+  content: "";
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  border: 6px solid #f2f2f2;
+  border-top: 6px solid #5a0685;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: animate-preloader 1s linear infinite;
+  animation: animate-preloader 1s linear infinite;
+}
+
+@-webkit-keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*------/ Button /------*/
+.button {
+  display: inline-block;
+  padding: .3rem .6rem;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 1rem;
+  border-radius: .3rem;
+  border: 1px solid transparent;
+  transition: all 500ms ease;
+  cursor: pointer;
+}
+
+.button:focus {
+  outline: 0;
+}
+
+.button:hover {
+  background-color: #5a0685;
+  color: #fff;
+  transition: all 500ms ease;
+}
+
+.button-a {
+  background-color: #5a0685;
+  color: #fff;
+  border-color: #cde1f8;
+}
+
+.button-big {
+  padding: .9rem 2.3rem;
+  font-size: 1.2rem;
+}
+
+.button-rouded {
+  border-radius: 5rem;
+}
+
+.btn-lg {
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: .3rem;
+}
+
+/*--------------------------------------------------------------
+# Nav Bar
+--------------------------------------------------------------*/
+.navbar-b {
+  transition: all .5s ease-in-out;
+  background-color: transparent;
+  padding-top: 1.563rem;
+  padding-bottom: 1.563rem;
+}
+
+.navbar-b.navbar-reduce {
+  box-shadow: 0px 6px 9px 0px rgba(0, 0, 0, 0.06);
+}
+
+.navbar-b.navbar-trans .nav-item, .navbar-b.navbar-reduce .nav-item {
+  position: relative;
+  padding-right: 10px;
+  padding-left: 0;
+}
+
+@media (min-width: 768px) {
+  .navbar-b.navbar-trans .nav-item, .navbar-b.navbar-reduce .nav-item {
+    padding-left: 10px;
+  }
+}
+
+.navbar-b.navbar-trans .nav-link, .navbar-b.navbar-reduce .nav-link {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.navbar-b.navbar-trans .nav-link:before, .navbar-b.navbar-reduce .nav-link:before {
+  content: '';
+  position: absolute;
+  margin-left: 0px;
+  width: 0%;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  transition: all 500ms ease;
+}
+
+@media (min-width: 768px) {
+  .navbar-b.navbar-trans .nav-link:before, .navbar-b.navbar-reduce .nav-link:before {
+    margin-left: 18px;
+  }
+}
+
+.navbar-b.navbar-trans .nav-link:hover, .navbar-b.navbar-reduce .nav-link:hover {
+  color: #1B1B1B;
+}
+
+.navbar-b.navbar-trans .nav-link:hover:before, .navbar-b.navbar-reduce .nav-link:hover:before {
+  width: 35px;
+}
+
+.navbar-b.navbar-trans .show > .nav-link:before,
+.navbar-b.navbar-trans .active > .nav-link:before,
+.navbar-b.navbar-trans .nav-link.show:before,
+.navbar-b.navbar-trans .nav-link.active:before, .navbar-b.navbar-reduce .show > .nav-link:before,
+.navbar-b.navbar-reduce .active > .nav-link:before,
+.navbar-b.navbar-reduce .nav-link.show:before,
+.navbar-b.navbar-reduce .nav-link.active:before {
+  width: 35px;
+}
+
+.navbar-b.navbar-trans .nav-link:before {
+  background-color: #fff;
+}
+
+.navbar-b.navbar-trans .nav-link:hover {
+  color: #fff;
+}
+
+.navbar-b.navbar-trans .show > .nav-link,
+.navbar-b.navbar-trans .active > .nav-link,
+.navbar-b.navbar-trans .nav-link.show,
+.navbar-b.navbar-trans .nav-link.active {
+  color: #fff;
+}
+
+.navbar-b.navbar-reduce {
+  transition: all .5s ease-in-out;
+  background-color: #fff;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.navbar-b.navbar-reduce .nav-link {
+  color: #5a0685;
+}
+
+.navbar-b.navbar-reduce .nav-link:before {
+  background-color: #5a0685;
+}
+
+.navbar-b.navbar-reduce .nav-link:hover {
+  color: #5a0685;
+}
+
+.navbar-b.navbar-reduce .show > .nav-link,
+.navbar-b.navbar-reduce .active > .nav-link,
+.navbar-b.navbar-reduce .nav-link.show,
+.navbar-b.navbar-reduce .nav-link.active {
+  color: #5a0685;
+}
+
+.navbar-b.navbar-reduce .navbar-brand {
+  color: #5a0685;
+}
+
+.navbar-b.navbar-reduce .navbar-toggler span {
+  background-color: #1B1B1B;
+}
+
+.navbar-b .navbar-brand {
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.navbar-b .navbar-nav .dropdown-item.show .dropdown-menu,
+.navbar-b .dropdown.show .dropdown-menu,
+.navbar-b .dropdown-btn.show .dropdown-menu {
+  transform: translate3d(0px, 0px, 0px);
+  visibility: visible !important;
+}
+
+.navbar-b .dropdown-menu {
+  margin: 1.12rem 0 0;
+  border-radius: 0;
+}
+
+.navbar-b .dropdown-menu .dropdown-item {
+  padding: .7rem 1.7rem;
+  transition: all 500ms ease;
+}
+
+.navbar-b .dropdown-menu .dropdown-item:hover {
+  background-color: #5a0685;
+  color: #fff;
+  transition: all 500ms ease;
+}
+
+.navbar-b .dropdown-menu .dropdown-item.active {
+  background-color: #5a0685;
+}
+
+/*--/ Hamburger Navbar /--*/
+.navbar-toggler {
+  position: relative;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+  outline: 0;
+}
+
+.navbar-toggler span {
+  display: block;
+  background-color: #fff;
+  height: 3px;
+  width: 25px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  transform: rotate(0deg);
+  left: 0;
+  opacity: 1;
+}
+
+.navbar-toggler span:nth-child(1),
+.navbar-toggler span:nth-child(3) {
+  transition: transform .35s ease-in-out;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(1) {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  transform: rotate(135deg);
+  opacity: 0.9;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(2) {
+  height: 12px;
+  visibility: hidden;
+  background-color: transparent;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(3) {
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  transform: rotate(-135deg);
+  opacity: 0.9;
+}
+
+/*--------------------------------------------------------------
+# Intro Section
+--------------------------------------------------------------*/
+.intro {
+  height: 100vh;
+  position: relative;
+  color: #fff;
+}
+
+.intro .intro-content {
+  text-align: center;
+  position: absolute;
+}
+
+.intro .overlay-itro {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0px;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  opacity: .9;
+}
+
+.intro .intro-title {
+  color: #fff;
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+@media (min-width: 768px) {
+  .intro .intro-title {
+    font-size: 4.5rem;
+  }
+}
+
+.intro .intro-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .intro .intro-subtitle {
+    font-size: 2.5rem;
+  }
+}
+
+.intro .text-slider-items {
+  display: none;
+}
+
+.intro-single {
+  height: 350px;
+}
+
+.intro-single .intro-content {
+  margin-top: 30px;
+}
+
+.intro-single .intro-title {
+  text-transform: uppercase;
+  font-size: 3rem;
+}
+
+@media (min-width: 768px) {
+  .intro-single .intro-title {
+    font-size: 3.5rem;
+  }
+}
+
+.intro-single .breadcrumb {
+  background-color: transparent;
+  color: #5a0685;
+}
+
+.intro-single .breadcrumb .breadcrumb-item:before {
+  color: #cde1f8;
+}
+
+.intro-single .breadcrumb .breadcrumb-item.active {
+  color: #cde1f8;
+}
+
+.intro-single .breadcrumb a {
+  color: #fff;
+}
+
+/*--------------------------------------------------------------
+# About
+--------------------------------------------------------------*/
+.about-mf .box-shadow-full {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.about-mf .about-img {
+  margin-bottom: 2rem;
+}
+
+.about-mf .about-img img {
+  margin-left: 10px;
+}
+
+@media (min-width: 767px) {
+  .about-mf .box-pl2 {
+    margin-top: 3rem;
+    padding-left: 0rem;
+  }
+}
+
+.skill-mf span {
+  color: #4e4e4e;
+}
+
+.skill-mf .progress {
+  background-color: #cde1f8;
+  margin: .5rem 0 1.2rem 0;
+  border-radius: 0;
+  height: .7rem;
+}
+
+.skill-mf .progress .progress-bar {
+  height: .7rem;
+  background-color: #5a0685;
+}
+
+/*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
+.service-box {
+  background-color: #fff;
+  padding: 2.5rem 1.3rem;
+  border-radius: 1rem;
+  margin-bottom: 3rem;
+}
+
+.service-box:hover .ico-circle {
+  transition: all 500ms ease;
+  color: #fff;
+  background-color: #5a0685;
+  box-shadow: 0 0 0 10px #cde1f8;
+}
+
+.service-box .service-ico {
+  margin-bottom: 1rem;
+  color: #1e1e1e;
+}
+
+.service-box .ico-circle {
+  transition: all 500ms ease;
+  font-size: 4rem;
+}
+
+.service-box .s-title {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  text-align: center;
+  padding: .4rem 0;
+}
+
+.service-box .s-description {
+  color: #4e4e4e;
+}
+
+/*--------------------------------------------------------------
+# Counter
+--------------------------------------------------------------*/
+.counter-box {
+  color: #fff;
+  text-align: center;
+}
+
+@media (min-width: 577px) {
+  .counter-box {
+    margin-bottom: 1.8rem;
+  }
+}
+
+.counter-ico {
+  margin-bottom: 1rem;
+}
+
+.counter-ico .ico-circle {
+  height: 60px;
+  width: 60px;
+  line-height: 1.8;
+  box-shadow: 0 0 0 10px #cde1f8;
+}
+
+.counter-num .counter {
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Portfolio
+--------------------------------------------------------------*/
+.work-box {
+  margin-bottom: 3rem;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-color: #fff;
+}
+
+.work-box:hover img {
+  transform: scale(1.3);
+}
+
+.work-img {
+  display: block;
+  overflow: hidden;
+}
+
+.work-img img {
+  transition: all 1s;
+}
+
+.work-content {
+  padding: 2rem 3% 1rem 4%;
+}
+
+.work-content .w-more {
+  color: #4e4e4e;
+  font-size: .8rem;
+}
+
+.work-content .w-more .w-ctegory {
+  color: #5a0685;
+}
+
+.work-content .w-like {
+  font-size: 2.5rem;
+  color: #5a0685;
+  float: right;
+}
+
+.work-content .w-like a {
+  color: #5a0685;
+}
+
+.work-content .w-like .num-like {
+  font-size: .7rem;
+}
+
+.w-title {
+  font-size: 1.2rem;
+}
+
+/*--------------------------------------------------------------
+# Testimonials
+--------------------------------------------------------------*/
+.testimonials .owl-carousel .owl-item img {
+  width: auto;
+}
+
+.testimonial-box {
+  color: #fff;
+  text-align: center;
+}
+
+.testimonial-box .author-test {
+  margin-top: 1rem;
+}
+
+.testimonial-box .author-test img {
+  margin: 0 auto;
+}
+
+.testimonial-box .author {
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 1rem 0;
+  display: block;
+  font-size: 1.4rem;
+}
+
+.testimonial-box .comit {
+  font-size: 2rem;
+  color: #5a0685;
+  background-color: #fff;
+  width: 52px;
+  height: 52px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .testimonial-box .description {
+    padding: 0 5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .testimonial-box .description {
+    padding: 0 8rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .testimonial-box .description {
+    padding: 0 13rem;
+  }
+}
+
+/*--------------------------------------------------------------
+# Contact
+--------------------------------------------------------------*/
+.footer-paralax {
+  padding: 4rem 0 0 0;
+}
+
+.contact-mf {
+  margin-top: 4rem;
+}
+
+@media (min-width: 767px) {
+  .contact-mf .box-pl2 {
+    margin-top: 3rem;
+    padding-left: 0rem;
+  }
+}
+
+.php-email-form .validate {
+  display: none;
+  color: red;
+  margin: 0 0 15px 0;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.php-email-form .error-message {
+  display: none;
+  color: #fff;
+  background: #ed3c0d;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.php-email-form .sent-message {
+  display: none;
+  color: #fff;
+  background: #18d26e;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.php-email-form .loading {
+  display: none;
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+}
+
+.php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #18d26e;
+  border-top-color: #eee;
+  -webkit-animation: animate-loading 1s linear infinite;
+  animation: animate-loading 1s linear infinite;
+}
+
+.php-email-form input, .php-email-form textarea {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+}
+
+.php-email-form input::focus, .php-email-form textarea::focus {
+  background-color: #5a0685;
+}
+
+.php-email-form input {
+  padding: 20px 15px;
+}
+
+.php-email-form textarea {
+  padding: 12px 15px;
+  margin-bottom: 0;
+}
+
+.php-email-form button[type="submit"] {
+  background: #5a0685;
+  border: 0;
+  padding: 10px 24px;
+  color: #fff;
+  transition: 0.4s;
+}
+
+.php-email-form button[type="submit"]:hover {
+  background: #5a0685;
+}
+
+@-webkit-keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------------------------------
+# Blog
+--------------------------------------------------------------*/
+@media (min-width: 767px) {
+  .card-blog {
+    margin-bottom: 3rem;
+  }
+}
+
+.card-blog .card-body {
+  position: relative;
+}
+
+.card-blog .card-category-box {
+  position: absolute;
+  text-align: center;
+  top: -16px;
+  left: 15px;
+  right: 15px;
+  line-height: 25px;
+  overflow: hidden;
+}
+
+.card-blog .card-category {
+  display: inline-block;
+  color: #fff;
+  padding: 0 15px 5px;
+  overflow: hidden;
+  background-color: #5a0685;
+  border-radius: 4px;
+}
+
+.card-blog .card-category .category {
+  color: #fff;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: .7rem;
+  letter-spacing: .1px;
+  margin-bottom: 0;
+}
+
+.card-blog .card-title {
+  font-size: 1.3rem;
+  margin-top: .6rem;
+}
+
+.card-blog .card-description {
+  color: #4e4e4e;
+}
+
+.card-blog .post-author {
+  display: inline-block;
+}
+
+.card-blog .post-date {
+  color: #4e4e4e;
+  display: inline-block;
+  float: right;
+}
+
+/*--------------------------------------------------------------
+# Blog Single
+--------------------------------------------------------------*/
+.post-box,
+.form-comments,
+.box-comments,
+.widget-sidebar {
+  padding: 2rem;
+  background-color: #fff;
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+  .post-box,
+  .form-comments,
+  .box-comments,
+  .widget-sidebar {
+    padding: 3rem;
+  }
+}
+
+.blog-wrapper .article-title {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .blog-wrapper .article-title {
+    font-size: 1.9rem;
+  }
+}
+
+.blog-wrapper .post-meta {
+  margin: 1rem 0;
+}
+
+.blog-wrapper .post-meta ul {
+  border-left: 4px solid #5a0685;
+  margin-top: 1rem;
+}
+
+.blog-wrapper .post-meta ul li {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.blog-wrapper .post-meta ul a {
+  color: #5a0685;
+}
+
+.blog-wrapper .post-meta ul span {
+  color: #1e1e1e;
+}
+
+.blog-wrapper .blockquote {
+  border-left: 4px solid #5a0685;
+  padding: 18px;
+  font-style: italic;
+}
+
+/*------/ Comments /------*/
+.box-comments .list-comments li {
+  padding-bottom: 40px;
+}
+
+.box-comments .list-comments .comment-avatar {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.box-comments .list-comments .comment-avatar img {
+  width: 80px;
+  height: 80px;
+}
+
+.box-comments .list-comments .comment-author {
+  font-size: 1.3rem;
+}
+
+@media (min-width: 768px) {
+  .box-comments .list-comments .comment-author {
+    font-size: 1.5rem;
+  }
+}
+
+.box-comments .list-comments .comment-details {
+  display: table-cell;
+  vertical-align: top;
+  padding-left: 25px;
+}
+
+.box-comments .list-comments a {
+  color: #5a0685;
+}
+
+.box-comments .list-comments span {
+  color: #1e1e1e;
+  font-style: italic;
+}
+
+.box-comments .comment-children {
+  margin-left: 40px;
+}
+
+/*------/ Sidebar /------*/
+.widget-sidebar .sidebar-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-left: 5px solid #5a0685;
+  padding-left: 15px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.widget-sidebar .list-sidebar li {
+  position: relative;
+  padding: 6px 0 6px 24px;
+}
+
+.widget-sidebar .list-sidebar li:before {
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 1px;
+  left: 0;
+  background-color: #5a0685;
+  top: 20px;
+}
+
+.sidebar-search input {
+  background-color: #fff;
+  border-radius: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.sidebar-search .btn-search {
+  background-color: #5a0685;
+  border-color: #5a0685;
+  border-radius: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.widget-tags ul li {
+  display: inline-block;
+  background-color: #5a0685;
+  padding: .2rem .6rem;
+  margin-bottom: .5rem;
+  border-radius: 15px;
+}
+
+.widget-tags ul li a {
+  color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+footer {
+  text-align: center;
+  color: #fff;
+  padding: 25px 0;
+  background: #5a0685;
+}
+
+footer .copyright {
+  margin-bottom: .3rem;
+}
+
+footer .credits {
+  margin-bottom: 0;
+}
+
+footer .credits a {
+  color: #fff;
+}
